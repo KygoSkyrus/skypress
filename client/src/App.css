@@ -1,0 +1,128 @@
+body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.App{
+  display: flex;
+}
+
+/**outPUT.js*/
+#root1{
+  width: 70vw;
+}
+
+
+/********************all inputHTML css ends******************************************/
+/**INPUT.js*/
+.input-outermost{
+   width: 50vw;
+   height: 100vh;
+   background-color: rgb(236, 236, 236);
+   border-left: 1px dashed black;
+   padding: 4px;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.groupInput{
+  padding: 10px;
+}
+
+
+
+/*add child*/
+#addChildPopup{
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgb(241, 241, 241);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px;
+  border-radius: 4px;
+}
+
+/*strucure*/
+.structure{
+  
+}
+.structure .structElemHolder{
+    margin: 4px 0;
+    background-color: rgb(118, 224, 189);
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+}
+.structure .structElemHolder .structElem{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/********************all inputHTML css ends******************************************/
+
+
+
+/*InputCSS.js*/
+#inputCss{
+  display: none;
+}
+
+#property,
+#propertyValue,
+#propertyUserInput{
+  height: 36px;
+}
+
+
+.pebbles,
+.appliedCssListPebbles{
+  padding: 2px 6px;
+  background-color: rgb(161, 161, 161);
+  border-radius: 4px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+}
+.pebbles{
+  width: fit-content;
+}
+.appliedCssListPebbles{
+  justify-content: space-between;
+}
+
+.selected{
+  background-color: rgb(14, 180, 14);
+}
+
+
+#classList{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hide{
+  display: none;
+}
+
+/*********************** common CSS ********************/
+.flex{
+  display: flex;
+}
+.flex-direction{
+  flex-direction: column;
+}
+.mt30{
+  margin-top: 30px;
+}
+.mb30{
+  margin-bottom: 30px;
+}
