@@ -5,12 +5,15 @@ import css from "./assets/css-properties.json";
 import minus from "./assets/icons8-minus-windows-11-color/icons8-minus-96.png";
 import htmlIcon from "./assets/icons8-html-5-windows-11-color/icons8-html-5-96.png";
 
-
 let dummyArr = [];
+
+//latest update/////dont duplicate the class pebbles....just fix the delete class function,,,on delete check if the other element has this class or not,,,if yes then dont delete the pebble ,ifnot then delete
 
 //todo::;
 //put all the validation to add classname..what if user eneters a classname staring with dot
 //only show pebbles that are of relevant class
+//delete element option is yet to be added
+//check the feature that,,if already added class in previous element is added to new element,then the css property shows up in the structure or not, although it will work for the real elem but what about structure
 
 //delete element feature
 //delete css property feature
@@ -37,81 +40,19 @@ function InputCSS(props) {
     if (document.getElementById("classList") && element) {
       let classList = document.getElementById("classList");
 
+      //console.log("useffects rann-");
 
-      console.log('useffects rann-')
-
-      let arr=[];
-      element.classList.forEach(x=>{
-        console.log(x)
-
-        classList.childNodes.forEach(each=>{
-            //   if(each.id.includes('#$'+x+'$#')){
-            //   console.log(each)
-            //   arr.push(each.id)
-            //   //here show
-            // }
-            // else{
-            //   //if arr doesnt has the displayeble pebbles only then hide
-            //   if(!arr.includes(each.id)){
-                
-            //     console.log(arr.includes(each.id))
-            //   console.log(arr)
-            //   console.log('other leftover pebbles',each)
-            //   console.log('--------------')
-            //   //here hide
-            //   }else{
-            //     console.log('eless else')
-            //     arr.push(each.id)
-            //     //here show
-            //   }
-            // }
-
-            console.log(each)
-            // if(element.classList.includes()){
-
-            // }
-
-            //this loop is over the all the peblles for a selected class..i just have to check if the pebble is of selcted elements classlist
-            //gonna try another approvach now,,,we dont' need the element classlist lopp....not neccessary...just loop over the pebbelws and check if the class matches the element's classlist
-            })
-        
-      })
- 
-       
-    
-      /*
       classList.childNodes.forEach((each) => {
-
-        if (element.classList.length === 0) {
-          each.classList.add("hide");
-          console.log('length is 0')
+        //curently data atttribute is used to match the class but later it maybe  have to be chnaged
+        //console.log(each.getAttribute(["data-css"]));
+        if (element.classList.contains(each.getAttribute(["data-css"]))) {
+          //console.log("this is wjat needed===", each);
+          each.classList.remove("hide");
         } else {
-          element.classList.forEach((x) => {
-            console.log('xxxxxxxxxxxxxxxxx')
-            console.log(x);
-
-            if (!each.id.includes("#$" + x + "$#")) {
-              console.log(element.classList)
-              console.log(element.classList.contains(x))
-              console.log("each--------------------",each);
-              if(element.classList.contains(x)){
-                //here we dont want to hide the class which is of current elenment ,currently its just elimination the classes which is of rest of the elements 
-                console.log("didnt matched");
-                each.classList.add("hide");
-              }
-
-            }else{
-              console.log("matched"); 
-              each.classList.remove("hide");
-              
-            }
-           
-          });
+          //console.log("hide elsse", each);
+          each.classList.add("hide");
         }
-        console.log('---------------------------------')
-
       });
-      */
     }
   }, [element]);
 
@@ -354,6 +295,7 @@ function InputCSS(props) {
     let sec = document.createElement("section");
     sec.classList.add("pebbles");
     sec.id = "_system" + i + "#$" + className.value + "$#"; // fix this,,id should be unique//this wont work
+    sec.setAttribute("data-css", className.value);
 
     let span = document.createElement("span");
     span.innerText = className.value;
