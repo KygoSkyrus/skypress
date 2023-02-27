@@ -1,12 +1,14 @@
 import React, {useState } from "react";
 import AddChild from "./AddChild";
 import InputCSS from "./InputCSS";
+//  import {BrowserRouter as Router,Link,Route,Routes,useNavigate} from 'react-router-dom'
 
 function Input() {
   const [sendElement, setsendElement] = useState();
   const [inputHtml, setinputHtml] = useState();
   const [sendstruct,setsendstruct]=useState();
 
+  // const navigate=useNavigate();
   //add live changes,,using setchange function ,,so that changes will be applied right when its typed
   function add(e) {
     let root1 = document.getElementById("root1");
@@ -58,6 +60,7 @@ function Input() {
       document.getElementById("inputCss").style.display="block";
       document.getElementById("inputHtml").style.display="none";
       setsendElement(createdElem);
+      // navigate('/addcss')
       // setinputHtml(inputHtmlComp);//removed from here as the inputhtmlcomp was only being inisitialized wihen the first addcss button was created.
     });
 
@@ -123,6 +126,9 @@ function Input() {
          setsendElement={setsendElement}
          inputHtml={inputHtml}
       />
+      {/* <Routes>
+        <Route path="/addcss" element={<InputCSS el={sendElement} inputHtml={inputHtml} />} />
+      </Routes> */}
     </>
   );
 }

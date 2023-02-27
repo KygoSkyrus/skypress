@@ -6,23 +6,20 @@ import minus from "./assets/icons8-minus-windows-11-color/icons8-minus-96.png";
 import htmlIcon from "./assets/icons8-html-5-windows-11-color/icons8-html-5-96.png";
 
 let dummyArr = [];
+let allAppliedClasses = []; //this array holds all the classes added in every element,this is required at the time of deleeting calss,,to make sure that class should be removed from style only if that class is not used anywhere in any element
 
-//latest update/////dont duplicate the class pebbles....just fix the delete class function,,,on delete check if the other element has this class or not,,,if yes then dont delete the pebble ,ifnot then delete
+//NOMENCLATURE
+//pebble: is reffered to the blocks which contains classname in UI
+//element: it's the current element to which css and class is being applied
+//currentClass: it's the selected class to which the css will be applied
 
 //todo::;
 //put all the validation to add classname..what if user eneters a classname staring with dot
-//only show pebbles that are of relevant class
-//delete element option is yet to be added
-//check the feature that,,if already added class in previous element is added to new element,then the css property shows up in the structure or not, although it will work for the real elem but what about structure
-
+//only show css pebbles that are of relevant class
 //delete element feature
 //delete css property feature
 
 //deffect::
-//its nnot letteing add the already existing class in other element...this can be donw,,but don't let same pebbles created for same name
-//alos if we have same pebbles for a class which is applied to two diff elements then on delte the class will be removed from style totally,,we dont want that
-//on dleteing pebbles i think we have  to chekc the if that oebbles class is applied on other elements also???if yes then we will only remove the class from that peblles but not delete the pebble//but on that delte action the classlist of the cuurent element should be updated so that it will refelect right there that pebble will be removed from the list
-//if it gets complicated then try keeeping multiple pebbles
 
 function InputCSS(props) {
   const { element, inputHtml } = props;
@@ -32,7 +29,19 @@ function InputCSS(props) {
   const [previousClassPebbleId, setPreviousClassPebbleId] = useState();
   const [appliedCssList, setAppliedCssList] = useState();
 
-  //Note :pebble is reffered to the blocks which contains classname in UI
+  const [updateClassPebbles, setUpdateClassPebbles] = useState(1); //check if this is working bcz i noticed that one every render it will be 1 agagin so there mayebe a chance when the value wont look as they a=have chnaged
+
+  const [currentXyz, setCurrentXyz] = useState(0);
+  const [spanToBeDeleted, setSpanToBeDeleted] = useState();
+
+  //passing deleteclass function through this useeffect as the deletclass function does not have the current element and in here in useffect when the page re renders it has the current elm and it's send to the followup function
+  useEffect(() => {
+    console.log("delete class UE ran-");
+    // console.log('span tp be dleted in ue',spanToBeDeleted)
+
+    if (element && spanToBeDeleted !== "")
+      deleteClassAndPebble(element, spanToBeDeleted);
+  }, [currentXyz]);
 
   //only show the class pebbles of the selected element
   useEffect(() => {
@@ -40,21 +49,17 @@ function InputCSS(props) {
     if (document.getElementById("classList") && element) {
       let classList = document.getElementById("classList");
 
-      //console.log("useffects rann-");
-
       classList.childNodes.forEach((each) => {
         //curently data atttribute is used to match the class but later it maybe  have to be chnaged
-        //console.log(each.getAttribute(["data-css"]));
-        if (element.classList.contains(each.getAttribute(["data-css"]))) {
-          //console.log("this is wjat needed===", each);
+        //data attribute in pebbles have classname (this was needed to identify pebble)
+        if (element.classList.contains(each.getAttribute(["data-pebblecss"]))) {
           each.classList.remove("hide");
         } else {
-          //console.log("hide elsse", each);
           each.classList.add("hide");
         }
       });
     }
-  }, [element]);
+  }, [element, updateClassPebbles]); //this is getting referesed on two action,,first when different element is selected (so that itb would show those element's classes only).. second when a class is added which is already in some other element and for which there is already a pebble and bcz of taht we won't create a dublicate pebble,,so we update this to show that pebble
 
   //for setting selected class pebbles
   useEffect(() => {
@@ -79,38 +84,49 @@ function InputCSS(props) {
   //for setting applied csss list
   useEffect(() => {
     createAppliedCssPebbles(appliedCssList);
-  }, [appliedCssList]);
+  }, [appliedCssList, element, updateClassPebbles]); //reason why there are 3 dependency--element:when didfernt element is opeend it won't show it's css,,,appliedCssList:whenever a new css is added it will update the immediatly;;;updateclasspebbles:whenever a class is added which already has css applied then it will retrieve all the css and show it
 
   //this function created the applied list pebbles //basically loops over the json and beautify it
   function createAppliedCssPebbles(appliedCssList) {
+    console.log("applied css list func-------", element);
     if (appliedCssList) {
+      console.log("-----------1");
       //console.log(currentClassPebbleId,previousClassPebbleId);
 
       let appliedCssListElem = document.getElementById("appliedCssList");
       appliedCssListElem.innerHTML = "";
 
-      if (appliedCssList[currentClass]) {
-        Object.keys(appliedCssList[currentClass]).forEach((x) => {
-          let sec = document.createElement("section");
-          sec.classList.add("appliedCssListPebbles");
+      //260223 N-update
+      //ISSUE::::todo-[this can be solved by having a data attribute to the element which will hold the selected class,,if there is no class selected thenit will be emoty,,so whenever an eleemt is loaded teh selected class will be shown slected];;;this is bcz of currentclass,even after you go to another elem there is still a class sekected as current and due to that it will show all the properties of that ckass
+      if (element.classList.contains(currentClass)) {
+        console.log("contains");
 
-          //sec.id = "_system" + i + className.value; // fix this,,id should be unique//this wont work
+        if (appliedCssList[currentClass]) {
+          console.log("-----------2");
+          Object.keys(appliedCssList[currentClass]).forEach((x) => {
+            console.log("-----------x", x);
 
-          let span = document.createElement("span");
-          span.innerText = x + " : " + appliedCssList[currentClass][x];
-          span.style.margin = "0 6px 0 0";
-          //span.style.cursor = "pointer";
+            let sec = document.createElement("section");
+            sec.classList.add("appliedCssListPebbles");
 
-          let classDeleteBtn = document.createElement("img");
-          classDeleteBtn.src = minus;
-          classDeleteBtn.style.width = "20px";
-          classDeleteBtn.style.height = "20px";
-          classDeleteBtn.style.cursor = "pointer";
+            //sec.id = "_system" + i + className.value; // fix this,,id should be unique//this wont work
 
-          sec.appendChild(span);
-          sec.appendChild(classDeleteBtn);
-          appliedCssListElem.appendChild(sec);
-        });
+            let span = document.createElement("span");
+            span.innerText = x + " : " + appliedCssList[currentClass][x];
+            span.style.margin = "0 6px 0 0";
+            //span.style.cursor = "pointer";
+
+            let classDeleteBtn = document.createElement("img");
+            classDeleteBtn.src = minus;
+            classDeleteBtn.style.width = "20px";
+            classDeleteBtn.style.height = "20px";
+            classDeleteBtn.style.cursor = "pointer";
+
+            sec.appendChild(span);
+            sec.appendChild(classDeleteBtn);
+            appliedCssListElem.appendChild(sec);
+          });
+        }
       }
     }
   }
@@ -255,28 +271,40 @@ function InputCSS(props) {
     let classList = document.getElementById("classList");
     //have to reset the class names pebbles when other's child addcss is clicked
 
+    let doesClassExistInElem = false;
     let regEx = /^\S*$/;
     //if there are no whitespaces in classname
     if (regEx.test(className.value)) {
       if (className.value) {
-        element.classList.add(className.value);
-      }
+        console.log(className.value);
+        console.log(element.classList);
 
-      if (className.value) {
-        let doesClassExist = false;
+        //dont let classname be added if element already has that class
+        if (element.classList.contains(className.value)) {
+          console.log("class exists already---------");
+          doesClassExistInElem = true;
+          alert("class already exists");
+        } else {
+          element.classList.add(className.value);
+          allAppliedClasses.push(className.value); //putting all the classes in the array
+          //updating the pebbles list as the new pebble wont be created and the already exisiting pewbble showuld be shown in this elem
+          let v = updateClassPebbles + 1;
+          setUpdateClassPebbles(v);
+        }
+
+        let doesClassExistInPebbles = false;
         //for the first time let class be added
         if (classList.childNodes.length === 0) {
           createClassPebbles(className, classList);
         } else {
-          //if it has class then check if the added class doesnt already exist, only then crerate pebble
-          //FIX:the below loop should be on the elements classlist so it would check if the class exists on that element not in the peblles list
+          //checking if there is already a pebble for the class
           classList.childNodes.forEach((x) => {
             if (x.id.includes("#$" + className.value + "$#")) {
-              doesClassExist = true;
-              alert("class already exists");
+              doesClassExistInPebbles = true;
             }
           });
-          if (!doesClassExist) {
+
+          if (!doesClassExistInElem && !doesClassExistInPebbles) {
             createClassPebbles(className, classList);
           }
         }
@@ -295,7 +323,7 @@ function InputCSS(props) {
     let sec = document.createElement("section");
     sec.classList.add("pebbles");
     sec.id = "_system" + i + "#$" + className.value + "$#"; // fix this,,id should be unique//this wont work
-    sec.setAttribute("data-css", className.value);
+    sec.setAttribute("data-pebblecss", className.value);
 
     let span = document.createElement("span");
     span.innerText = className.value;
@@ -342,48 +370,60 @@ function InputCSS(props) {
     setCurrentClass(span.innerText);
   }
 
-  function deleteSelctedClass(span) {
-    console.log("deleteselectedclas rtan-----", span);
+  function deleteClassAndPebble(element, span) {
+    //wrap the whole function if the element and span are true
     let className = span.innerText;
     element.classList.remove(className);
+
+    let v = updateClassPebbles + 1;
+    setUpdateClassPebbles(v);
+
+    allAppliedClasses.splice(allAppliedClasses.indexOf(className), 1); //removing the class from arr
+    console.log(allAppliedClasses);
 
     let cssJsonElem = document.getElementById("cssJsonElem");
     console.log(cssJsonElem.innerText);
 
-    let existingCssJson;
-    if (cssJsonElem.innerText) {
-      existingCssJson = JSON.parse(cssJsonElem.innerText);
-      console.log("check if this is needed 1", existingCssJson);
+    //only delete the pebble and remove css from style if there is no same class applied to other element
+    if (!allAppliedClasses.includes(className)) {
+      let existingCssJson;
+      if (cssJsonElem.innerText) {
+        existingCssJson = JSON.parse(cssJsonElem.innerText);
+        console.log("check if this is needed 1", existingCssJson);
 
-      //checking if the class exists and then deleting it
-      if (existingCssJson[className]) {
-        delete existingCssJson[className];
-        console.log("after deleeting property", existingCssJson);
-        //existingCssJson[className][property.value] = propertyValue.value;
-      }
-      setAppliedCssList(existingCssJson);
-      cssJsonElem.innerText = JSON.stringify(existingCssJson);
-    }
-
-    //putting the updates css json in the style stag after formatting it into .css format
-    if (
-      document.querySelectorAll("[data-css]").length === 1 &&
-      document.querySelectorAll("[data-css]")[0].getAttribute("data-css") ===
-        "dynamicCss"
-    ) {
-      let styleStr = "";
-      if (existingCssJson) {
-        styleStr = convertCssJosnToStyles(existingCssJson);
+        //checking if the class exists and then deleting it
+        if (existingCssJson[className]) {
+          delete existingCssJson[className];
+          console.log("after deleeting property", existingCssJson);
+          //existingCssJson[className][property.value] = propertyValue.value;
+        }
+        setAppliedCssList(existingCssJson);
+        cssJsonElem.innerText = JSON.stringify(existingCssJson);
       }
 
-      console.log("retSTR in delete", styleStr);
+      //putting the updates css json in the style tag after formatting it into .css format
+      if (
+        document.querySelectorAll("[data-css]").length === 1 &&
+        document.querySelectorAll("[data-css]")[0].getAttribute("data-css") ===
+          "dynamicCss"
+      ) {
+        let styleStr = "";
+        if (existingCssJson) {
+          styleStr = convertCssJosnToStyles(existingCssJson);
+        }
 
-      let style = document.querySelectorAll("[data-css]")[0];
-      style.innerText = styleStr;
+        console.log("retSTR in delete", styleStr);
+
+        let style = document.querySelectorAll("[data-css]")[0];
+        style.innerText = styleStr;
+      }
+
+      //clearing span from state too
+      setSpanToBeDeleted("");
+
+      //finally deleting the classname pebble
+      span.parentNode.remove();
     }
-
-    //finally deleting the classname pebble
-    span.parentNode.remove();
   }
 
   function convertCssJosnToStyles(cssJson) {
@@ -402,6 +442,16 @@ function InputCSS(props) {
       retStr += `${tempStr}}`;
     });
     return retStr;
+  }
+
+  function deleteSelctedClass(span) {
+    console.log("deleteselectedclas rtan-----");
+    console.log("allAppliedClasses :", allAppliedClasses);
+
+    let xyz;
+    xyz = Math.random();
+    setCurrentXyz(xyz);
+    setSpanToBeDeleted(span);
   }
 
   return (
@@ -430,6 +480,7 @@ function InputCSS(props) {
               document.getElementById("property")
                 ? (document.getElementById("property").innerHTML = "")
                 : console.log("")
+              //maybe we can move this to an useeefct as it would render everytime
             }
             {Object.keys(css).forEach(function (key) {
               let ele = document.createElement("option");
@@ -450,7 +501,6 @@ function InputCSS(props) {
 
       <div id="appliedCssList"></div>
       <div id="cssJsonElem"></div>
-      <div id="htmlCode"></div>
     </div>
   );
 }
