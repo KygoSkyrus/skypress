@@ -26,17 +26,16 @@ function InputCSS(props) {
 
   const [currentClass, setCurrentClass] = useState();
   const [currentClassPebbleId, setCurrentClassPebbleId] = useState();
-  const [previousClassPebbleId, setPreviousClassPebbleId] = useState();
   const [appliedCssList, setAppliedCssList] = useState();
-
-  const [updateClassPebbles, setUpdateClassPebbles] = useState(1); //check if this is working bcz i noticed that one every render it will be 1 agagin so there mayebe a chance when the value wont look as they a=have chnaged
-
+  
+  const [handleMultipleSlctdClass,setHandleMultipleSlctdClass]=useState()
   const [currentXyz, setCurrentXyz] = useState(0);
   const [spanToBeDeleted, setSpanToBeDeleted] = useState();
+  const [updateClassPebbles, setUpdateClassPebbles] = useState(1); //check if this is working bcz i noticed that one every render it will be 1 agagin so there mayebe a chance when the value wont look as they a=have chnaged
 
   //passing deleteclass function through this useeffect as the deletclass function does not have the current element and in here in useffect when the page re renders it has the current elm and it's send to the followup function
   useEffect(() => {
-    console.log("delete class UE ran-");
+    console.log("delete class passed through UE ran-");
     // console.log('span tp be dleted in ue',spanToBeDeleted)
 
     if (element && spanToBeDeleted !== "")
@@ -45,6 +44,7 @@ function InputCSS(props) {
 
   //only show the class pebbles of the selected element
   useEffect(() => {
+    console.log('show relevant clas pebble only UE---')
     //if the classList has pebbles and there is a selcted element
     if (document.getElementById("classList") && element) {
       let classList = document.getElementById("classList");
@@ -61,50 +61,75 @@ function InputCSS(props) {
     }
   }, [element, updateClassPebbles]); //this is getting referesed on two action,,first when different element is selected (so that itb would show those element's classes only).. second when a class is added which is already in some other element and for which there is already a pebble and bcz of taht we won't create a dublicate pebble,,so we update this to show that pebble
 
-  //for setting selected class pebbles
-  useEffect(() => {
-    //we have to check if the pebbble element even exisit for both previous and current class
-    if (currentClass && document.getElementById(currentClassPebbleId)) {
-      console.log(currentClassPebbleId, previousClassPebbleId);
-      document.getElementById(currentClassPebbleId).classList.add("selected");
-      //only if theere is a previos selected class and if that pebble is still there; this is bcz this will thrwo error if the user has deleted previous selcted class, and then it wont be able to find that pebble
-      if (
-        previousClassPebbleId &&
-        document.getElementById(previousClassPebbleId)
-      ) {
-        document
-          .getElementById(previousClassPebbleId)
-          .classList.remove("selected");
-      }
 
-      createAppliedCssPebbles(appliedCssList);
+
+  //for setting selected class pebbles [here we have two useeffftct fr this purpose bcz we wanted to identify which dependecy were firing it and function accordingly]
+  useEffect(() => {
+   console.log('setting slecyed class UE;eleemnt changed---')
+
+if (document.getElementById("classList") && element) {
+
+  //these two will set the state to current class and pebble id..so whenevr an elemnet is changed it will update the state
+  setCurrentClass(element.dataset.currentclass)
+  setCurrentClassPebbleId(element.dataset.currentpebble)
+
+  settingSelectedClass();
+}
+}, [element,handleMultipleSlctdClass]);
+
+//this is also for setting slectedclass poebble but this will run when a cuurent class is change
+useEffect(()=>{
+  console.log('setting slecyed class UE;currentclass changed---',currentClass)
+  if (document.getElementById("classList") && element) {
+    element.dataset.currentpebble=currentClassPebbleId;
+    element.dataset.currentclass=currentClass;
+    settingSelectedClass();
+  }
+},[currentClass])
+
+function settingSelectedClass(){
+  console.log('ssc')
+  let classList = document.getElementById("classList");
+  
+  classList.childNodes.forEach((each) => {
+    if(!each.classList.contains('hide')){
+      if(element.dataset.currentpebble===each.id){
+        each.classList.add("selected");
+      }else{
+        each.classList.remove("selected")
+      }
     }
-  }, [currentClass]);
+  });
+  createAppliedCssPebbles(appliedCssList);
+}
+ 
+
 
   //for setting applied csss list
   useEffect(() => {
+    console.log('applied css pebble UE---')
     createAppliedCssPebbles(appliedCssList);
   }, [appliedCssList, element, updateClassPebbles]); //reason why there are 3 dependency--element:when didfernt element is opeend it won't show it's css,,,appliedCssList:whenever a new css is added it will update the immediatly;;;updateclasspebbles:whenever a class is added which already has css applied then it will retrieve all the css and show it
 
   //this function created the applied list pebbles //basically loops over the json and beautify it
   function createAppliedCssPebbles(appliedCssList) {
-    console.log("applied css list func-------", element);
-    if (appliedCssList) {
-      console.log("-----------1");
+    console.log("creaste applied css pbble func-------", element);
+
+      if (appliedCssList) {
+
+      //this will hold the selected class for cuurent elemet
+      let selectedClass=element.dataset.currentclass;//currentClass is replaced by selectedClass
+      //console.log('sc in cacp---',selectedClass)
       //console.log(currentClassPebbleId,previousClassPebbleId);
 
       let appliedCssListElem = document.getElementById("appliedCssList");
       appliedCssListElem.innerHTML = "";
 
-      //260223 N-update
-      //ISSUE::::todo-[this can be solved by having a data attribute to the element which will hold the selected class,,if there is no class selected thenit will be emoty,,so whenever an eleemt is loaded teh selected class will be shown slected];;;this is bcz of currentclass,even after you go to another elem there is still a class sekected as current and due to that it will show all the properties of that ckass
-      if (element.classList.contains(currentClass)) {
+      if (element.classList.contains(selectedClass)) {
         console.log("contains");
 
-        if (appliedCssList[currentClass]) {
-          console.log("-----------2");
-          Object.keys(appliedCssList[currentClass]).forEach((x) => {
-            console.log("-----------x", x);
+        if (appliedCssList[selectedClass]) {
+          Object.keys(appliedCssList[selectedClass]).forEach((x) => {
 
             let sec = document.createElement("section");
             sec.classList.add("appliedCssListPebbles");
@@ -112,7 +137,7 @@ function InputCSS(props) {
             //sec.id = "_system" + i + className.value; // fix this,,id should be unique//this wont work
 
             let span = document.createElement("span");
-            span.innerText = x + " : " + appliedCssList[currentClass][x];
+            span.innerText = x + " : " + appliedCssList[selectedClass][x];
             span.style.margin = "0 6px 0 0";
             //span.style.cursor = "pointer";
 
@@ -136,7 +161,7 @@ function InputCSS(props) {
     document.getElementById("inputCss").style.display = "none";
   }
 
-  function addProperty(e, className) {
+  function addProperty(e) {
     console.log("addproperty rann------");
 
     let property = document.getElementById("property");
@@ -155,8 +180,11 @@ function InputCSS(props) {
     let existingCssJson;
     let tempJson = Object();
 
+    //this will hold the selected class for cuurent elemet
+    let selectedClass=element.dataset.currentclass;//currentClass is replaced by selectedClass
+    console.log('sc in addproperty---',selectedClass)
     //only if a class is selected only then the property will be added
-    if (currentClass) {
+    if (selectedClass) {
       //so only if there is a value of the property only then it will be applied
       if (propertyValue.value) {
         if (cssJsonElem.innerText) {
@@ -164,19 +192,19 @@ function InputCSS(props) {
           console.log(existingCssJson);
 
           //checking if the class already exists, if not then add the class
-          if (!existingCssJson[className]) {
-            existingCssJson[className] = Object();
-            existingCssJson[className][property.value] = propertyValue.value;
+          if (!existingCssJson[selectedClass]) {
+            existingCssJson[selectedClass] = Object();
+            existingCssJson[selectedClass][property.value] = propertyValue.value;
           } else {
-            existingCssJson[className][property.value] = propertyValue.value;
+            existingCssJson[selectedClass][property.value] = propertyValue.value;
           }
           setAppliedCssList(existingCssJson);
           cssJsonElem.innerText = JSON.stringify(existingCssJson);
         } else {
           //this will run initially only
           //creating object of object and putting it in the element
-          tempJson[className] = Object();
-          tempJson[className][property.value] = propertyValue.value;
+          tempJson[selectedClass] = Object();
+          tempJson[selectedClass][property.value] = propertyValue.value;
           console.log(JSON.stringify(tempJson));
           setAppliedCssList(tempJson);
           cssJsonElem.innerText = JSON.stringify(tempJson);
@@ -290,6 +318,7 @@ function InputCSS(props) {
           //updating the pebbles list as the new pebble wont be created and the already exisiting pewbble showuld be shown in this elem
           let v = updateClassPebbles + 1;
           setUpdateClassPebbles(v);
+          setHandleMultipleSlctdClass(v)//this will render the useefcted where the setslectedclass function is called, which will resolve the propblem where if a class is added to an element which was a selcted class in the elem then in this eleme it will be selcted too, but with this logic we render the useeffct and update it
         }
 
         let doesClassExistInPebbles = false;
@@ -339,8 +368,6 @@ function InputCSS(props) {
     sec.appendChild(span);
     sec.appendChild(classDeleteBtn);
     classList.appendChild(sec);
-    // //clearing input
-    // className.value = "";//moving it to bottom
 
     span.addEventListener("click", function () {
       selctedClass(span, sec);
@@ -353,21 +380,10 @@ function InputCSS(props) {
   }
 
   function selctedClass(span, sec) {
-    console.log("selectedclas rtan-----", span);
-
-    //putting the cuurent select class in array onlyn and removing the previos one [working fine]
-    if (dummyArr.length === 1) {
-      setPreviousClassPebbleId(dummyArr[0]);
-      setCurrentClassPebbleId(sec.id);
-      dummyArr.splice(0);
-      dummyArr.push(sec.id);
-    } else {
-      //setting selected pebble
-      setCurrentClassPebbleId(sec.id);
-      dummyArr.push(sec.id);
-    }
+    console.log("selected class rtan-----", span);  
 
     setCurrentClass(span.innerText);
+    setCurrentClassPebbleId(sec.id)
   }
 
   function deleteClassAndPebble(element, span) {
@@ -446,7 +462,7 @@ function InputCSS(props) {
 
   function deleteSelctedClass(span) {
     console.log("deleteselectedclas rtan-----");
-    console.log("allAppliedClasses :", allAppliedClasses);
+    //console.log("allAppliedClasses :", allAppliedClasses);
 
     let xyz;
     xyz = Math.random();
@@ -493,7 +509,7 @@ function InputCSS(props) {
           </select>
           <select id="propertyValue"></select>
         </div>
-        <button onClick={(e) => addProperty(e, currentClass)}>
+        <button onClick={(e) => addProperty(e)}>
           add property
         </button>
       </div>
