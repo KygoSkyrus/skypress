@@ -1,90 +1,285 @@
-body{
+body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.App{
+.App {
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
 }
 
 /**outPUT.js*/
-#root1{
-  width: 70vw;
+.root1 {
+  width: 50vw;
+  height: 100vh;
+  /* overflow: scroll; */
 }
-
-
+#root1::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #afafaf;
+}
+#root1::-webkit-scrollbar-thumb {
+  background-color: rgb(92, 92, 92);
+  border-radius: 4px;
+}
+.fullWidth{
+  width: 100vw;
+}
 /********************all inputHTML css ends******************************************/
 /**INPUT.js*/
-.input-outermost{
-   width: 50vw;
-   height: 100vh;
-   background-color: rgb(236, 236, 236);
-   border-left: 1px dashed black;
-   padding: 4px;
-   box-sizing: border-box;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+.input-outermost {
+  width: 50vw;
+  height: 100vh;
+  background-color: rgb(236, 236, 236);
+  border-left: 1px dashed black;
+  padding: 30px 8px 8px 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* overflow:scroll; */
+  position: absolute;
+  /* z-index: 11; */
+  opacity: 0;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+  right: -50vw;
 }
 
-.groupInput{
-  padding: 10px;
+.groupInput {
+  padding: 8px;
+  background: #d0d0d0;
+  margin: 10px 0;
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+}
+.groupInput label {
+  color: #000;
+  font-size: 14px;
 }
 
+.groupInput select {
+  height: 36px;
+  border-radius: 5px;
+  padding: 0 5px;
+  border: none;
+  cursor: pointer;
+}
+/* .groupInput select:focus{
+  border:none;
+} */
+.groupInput select option {
+  height: 36px;
+}
+
+.groupInput textarea {
+  resize: vertical;
+  border-radius: 5px;
+  min-height: 36px;
+  border: none;
+}
+
+button {
+  height: 36px;
+  border-radius: 5px;
+  border: none;
+  background: #afafaf;
+  cursor: pointer;
+}
+
+
+.attributesHolder{
+  display: flex;
+flex-direction: column;
+padding: 10px 0;
+}
+
+.additonalAttributesHolder{
+  display: flex;
+  align-items: center;
+}
+.additonalAttributesHolder select{
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+}
+.additonalAttributesHolder img{
+  width: 36px;
+  border-radius: 0  5px 5px 0;
+  background-color: #4caf50;
+}
 
 
 /*add child*/
-#addChildPopup{
-  width: 300px;
-  height: 300px;
+#addChildPopup ,#editElemContentPopup{
+  width: 100vw;
+  height: 100vh;
+  background: #00000087;
+  position: absolute;
+  display: none;
+}
+
+#childInputHolder ,.editContentInputHolder{
+  /* width: 300px;
+  height: 300px; */
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: rgb(241, 241, 241);
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px;
-  border-radius: 4px;
+  border-radius: 5px;
+  padding: 60px 20px;
+}
+
+#addChildPopup #addChildWithParent,
+#addChildPopup .container,
+#editElemContentPopup .container,
+#editElemContentPopup #updateElemsContent {
+  width: 100%;
+  width: 300px;
+}
+#addChildPopup #closeAddChildPopup,
+#editElemContentPopup #closeEditContentPopup {
+  height: 29px;
+  width: 29px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+#elemsEditedContent{
+  min-height: 120px;
+  max-height: 300px;
 }
 
 /*strucure*/
-.structure{
-  
+.structure {
 }
-.structure .structElemHolder{
-    margin: 4px 0;
-    background-color: rgb(118, 224, 189);
-    display: flex;
-    flex-direction: column;
-    border-radius: 2px;
+.structure .structElemHolder {
+  margin: 4px 0;
+  background-color: rgb(208 208 208);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
 }
-.structure .structElemHolder .structElem{
-    display: flex;
-    justify-content: space-between;
+.structure .structElemHolder .structElem {
+  display: flex;
+  justify-content: space-between;
 }
 
+.elemModifyBtnHolder {
+  display: flex;
+}
+.elemModifyBtnHolder img {
+  margin-left: 6px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.elemModifyBtnHolder .cssIcon {
+  border-radius: 50%;
+  /* background: #1e98ec; */
+  background: #46bde7;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  min-width: 120px;
+  visibility: hidden;
+  background-color: #555;
+  position: absolute;
+  bottom: 150%;
+  left: 10%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  /* z-index: 1; */
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  color: #fff;
+  border: 1px solid grey;
+}
+.tooltip .tooltiptext::after {
+  content: "";
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px solid #555;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.tooltip:hover .tooltiptext::after {
+  visibility: visible;
+  opacity: 1;
+}
 
 /********************all inputHTML css ends******************************************/
 
-
+/******************* iCONS STARTS **********************/
+.exportIcon {
+  width: 20px;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  margin: 8px;
+  z-index: 20;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+}
+.moveExportIcon {
+  top: 30px;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+}
+.backIcon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  bottom: 23px;
+  position: relative;
+}
+.doneIcon,.basicIcon{
+  width: 20px;
+  cursor: pointer;
+}
+/******************* iCONS ENDS **********************/
 
 /*InputCSS.js*/
-#inputCss{
-  display: none;
+#inputCss {
+  /* display: none; */
+  justify-content: stretch;
 }
 
 #property,
 #propertyValue,
-#propertyUserInput{
+#propertyUserInput {
   height: 36px;
 }
 
-
 .pebbles,
-.appliedCssListPebbles{
+.appliedCssListPebbles {
   padding: 2px 6px;
   background-color: rgb(161, 161, 161);
   border-radius: 4px;
@@ -92,37 +287,102 @@ body{
   display: flex;
   align-items: center;
 }
-.pebbles{
+.pebbles {
   width: fit-content;
 }
-.appliedCssListPebbles{
+.appliedCssListPebbles {
   justify-content: space-between;
 }
 
-.selected{
+.selected {
   background-color: rgb(14, 180, 14);
+  /* box-shadow: 0 0 3px #8b8b8b; */
+  box-shadow: inset -2px -2px 0px #343434;
 }
 
-
-#classList{
+#classList {
   display: flex;
   flex-wrap: wrap;
 }
 
-.hide{
+.hide {
   display: none;
 }
 
+.groupInput #className {
+  height: 36px;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: none;
+  width: 100%;
+}
+.classNameContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.classNameContainer button {
+  margin-left: 4px;
+}
+
+#propertyHolder select {
+  margin-bottom: 4px;
+}
+
+#propertyHolder #propertyUserInput {
+  height: 36px;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: none;
+  margin-bottom: 4px;
+}
+
 /*********************** common CSS ********************/
-.flex{
+.flex {
   display: flex;
 }
-.flex-direction{
+.flex-direction {
   flex-direction: column;
 }
-.mt30{
+.mt30 {
   margin-top: 30px;
 }
-.mb30{
+.mb30 {
   margin-bottom: 30px;
 }
+
+/**************slide in sidebar css *******************/
+
+#hamBurger {
+  width: 30px;
+  z-index: 111;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+  position: absolute;
+  top: 4px;
+  left: calc(-50vw - 38px);
+}
+#hamBurger.showHam {
+  left: -34px;
+  /* top: 19px; */
+}
+.bczOfHam {
+  position: absolute;
+  right: 0;
+}
+
+
+
+#hamBurger:hover {
+  transform: rotate(90deg);
+  color: #ff9900;
+}
+
+#inputHtml.enter,
+#inputCss.enter {
+  opacity: 1;
+  right: 0;
+}
+
+/**************slide in sidebar css *******************/
