@@ -24,9 +24,7 @@ and with each elem there will be an option to update modify that element such as
    
 
 # to d0-
-- have to add all the elemets option
-- have to add options for elements like input anchor etc
--fix the hamburger 
+- add tile tag for class name in elements and for suggested proeprty values etc
 
 
 - have to check responsiveness
@@ -41,12 +39,16 @@ and with each elem there will be an option to update modify that element such as
 
 # done stuff
 - DONE::put all the validation to add classname..what if user eneters a classname staring with dot
+- add data for html tags
+- fix the hamburger 
 - have to fix that there are data attributes when html is exported
 - add cursors where they are needed
 - enable editing content of element
 - modify alert,,dont use system one;;update--goint with the system alerts,,no need for custom one
 - fix UI, add icons 
 - add export feature
+- have to add all the elemets option
+- have to add options for elements like input anchor etc
 
 
 

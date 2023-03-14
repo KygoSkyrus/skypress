@@ -1,0 +1,689 @@
+{
+   "h1": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "h2": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "h3": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "h4": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "h5": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "h6": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "p": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "br": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "hr": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "abbr": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "address": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "b": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "bdi": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "bdo": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "blockquote": {
+       "attributes": [
+           "cite"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "cite": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "code": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "del": {
+       "attributes": [
+           "cite",
+           "datetime"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "dfn": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "em": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "i": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "ins": {
+       "attributes": [
+           "cite",
+           "datetime"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "kbd": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "mark": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "meter": {
+       "attributes": [
+           "high",
+           "low",
+           "max",
+           "min",
+           "optimum",
+           "value"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "pre": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "progress": {
+       "attributes": [
+           "max",
+           "value"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "q": {
+       "attributes": [
+           "cite"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "rp": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "rt": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "ruby": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "s": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "samp": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "small": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "strong": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "sub": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "sup": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "template": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "time": {
+       "attributes": [
+           "datetime"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "u": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "var": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "wbr": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "form": {
+       "attributes": [
+           "autocomplete",
+           "name",
+           "novalidate",
+           "rel",
+           "target"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "input": {
+       "attributes": [
+           "accept",
+           "alt",
+           "autocomplete",
+           "autofocus",
+           "checked",
+           "disabled",
+           "height",
+           "list",
+           "max",
+           "maxlength",
+           "min",
+           "multiple",
+           "name",
+           "pattern",
+           "placeholder",
+           "readonly",
+           "required",
+           "size",
+           "src",
+           "step",
+           "type",
+           "value",
+           "width"
+       ],
+       "mandatoryAttributes": ["type"],
+       "globalAttributes": []
+   },
+   "textarea": {
+       "attributes": [
+           "autofocus",
+           "cols",
+           "disabled",
+           "maxlength",
+           "name",
+           "placeholder",
+           "readonly",
+           "required",
+           "rows",
+           "wrap"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "button": {
+       "attributes": [
+           "autofocus",
+           "disabled",
+           "name",
+           "type",
+           "value"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "select": {
+       "attributes": [
+           "autofocus",
+           "disabled",
+           "multiple",
+           "name",
+           "required",
+           "size"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "optgroup": {
+       "attributes": [
+           "disabled",
+           "label"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "option": {
+       "attributes": [
+           "disabled",
+           "label",
+           "selected",
+           "value"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "label": {
+       "attributes": [
+           "for"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "fieldset": {
+       "attributes": [
+           "disabled",
+           "name"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "legend": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "datalist": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "output": {
+       "attributes": [
+           "for",
+           "name"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "iframe": {
+       "attributes": [
+           "height",
+           "name",
+           "sandbox",
+           "src",
+           "srcdoc",
+           "width"
+       ],
+       "mandatoryAttributes": ["src"],
+       "globalAttributes": []
+   },
+   "img": {
+       "attributes": [
+           "alt",
+           "height",
+           "ismap",
+           "sizes",
+           "src",
+           "srcset",
+           "usemap",
+           "width"
+       ],
+       "mandatoryAttributes": [
+           "src"
+       ],
+       "globalAttributes": []
+   },
+   "map": {
+       "attributes": [
+           "name"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "area": {
+       "attributes": [
+           "alt",
+           "coords",
+           "download",
+           "href",
+           "media",
+           "rel",
+           "shape",
+           "target"
+       ],
+       "mandatoryAttributes": ["coords","shape"],
+       "globalAttributes": []
+   },
+   "figcaption": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "figure": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "picture": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "svg": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "audio": {
+       "attributes": [
+           "autoplay",
+           "controls",
+           "loop",
+           "muted",
+           "preload",
+           "src"
+       ],
+       "mandatoryAttributes": ["src"],
+       "globalAttributes": []
+   },
+   "source": {
+       "attributes": [
+           "media",
+           "sizes",
+           "src",
+           "srcset",
+           "type"
+       ],
+       "mandatoryAttributes": ["src","type"],
+       "globalAttributes": []
+   },
+   "track": {
+       "attributes": [
+           "default",
+           "kind",
+           "label",
+           "src",
+           "srclang"
+       ],
+       "mandatoryAttributes": ["kind","src","srclang"],
+       "globalAttributes": []
+   },
+   "video": {
+       "attributes": [
+           "autoplay",
+           "controls",
+           "height",
+           "loop",
+           "muted",
+           "poster",
+           "preload",
+           "src",
+           "width"
+       ],
+       "mandatoryAttributes": ["src"],
+       "globalAttributes": []
+   },
+   "a": {
+       "attributes": [
+           "download",
+           "href",
+           "media",
+           "rel",
+           "target",
+           "type"
+       ],
+       "mandatoryAttributes": ["href"],
+       "globalAttributes": []
+   },
+   "nav": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "ul": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "ol": {
+       "attributes": [
+           "reversed",
+           "start"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "li": {
+       "attributes": [
+           "value"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "dl": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "dt": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "dd": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "table": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "caption": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "th": {
+       "attributes": [
+           "colspan",
+           "headers",
+           "rowspan",
+           "scope"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "tr": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "td": {
+       "attributes": [
+           "colspan",
+           "headers",
+           "rowspan"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "thead": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "tbody": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "tfoot": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "col": {
+       "attributes": [
+           "span"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "colgroup": {
+       "attributes": [
+           "span"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "div": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "span": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "header": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "footer": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "main": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "section": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "article": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "aside": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "details": {
+       "attributes": [
+           "open"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "dialog": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "summary": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "data": {
+       "attributes": [],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   },
+   "embed": {
+       "attributes": [
+           "height",
+           "src",
+           "type",
+           "width"
+       ],
+       "mandatoryAttributes": ["src"],
+       "globalAttributes": []
+   },
+   "object": {
+       "attributes": [
+           "data",
+           "height",
+           "name",
+           "type",
+           "usemap",
+           "width"
+       ],
+       "mandatoryAttributes": ["data"],
+       "globalAttributes": []
+   },
+   "param": {
+       "attributes": [
+           "name",
+           "value"
+       ],
+       "mandatoryAttributes": [],
+       "globalAttributes": []
+   }
+}

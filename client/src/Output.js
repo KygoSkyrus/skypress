@@ -1,6 +1,7 @@
 import React from "react";
 
-import exportIcon from "./assets/icons8-export-kmg-design-flat/icons8-export-64.png";
+import share from "./assets/icons8-share-tanah-basah-basic-outline[7]/icons8-share-96.png"
+// import share2 from "./assets/icons8-share-windows-11-outline[6]/icons8-share-96.png"
 
 const Output = () => {
   function handleClick(e) {
@@ -49,7 +50,7 @@ const Output = () => {
     <>
       <div className="root1" id="root1"></div>
       <img
-        src={exportIcon}
+        src={share}
         alt=""
         className="exportIcon"
         onClick={(e) => handleClick(e)}

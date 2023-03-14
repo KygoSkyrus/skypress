@@ -47,6 +47,7 @@ function AddChild(props) {
     childElemContent.value='';
   }
 
+
   function closeAddChildPopup(e) {
     document.getElementById("addChildPopup").style.display = "none";
      //clearing inputs
@@ -78,12 +79,13 @@ function AddChild(props) {
           <div className="container" id="childInputHolderContainer">
             <div className="groupInput">
               <label>Select element </label>
-              <select id="childElement">
-                <option value="div">div</option>
+              <select id="childElement" >
+                {/* <option value="div">div</option>
                 <option value="section">section</option>
                 <option value="span">span</option>
-                <option value="p">paragraph</option>
+                <option value="p">paragraph</option> */}
               </select>
+              <div id="tagsAttributesInChild"></div>
             </div>
             <div className="groupInput">
               <label>Add content</label>
