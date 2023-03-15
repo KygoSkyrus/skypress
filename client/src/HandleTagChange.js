@@ -12,7 +12,14 @@ import htmlTagList from "./assets/htmlTagList.json";
     //inParentOrChild: has the string "inPArent"/"inChild" to distinguis child parent
     tagsAttributes.innerHTML = ""; //clearing the previously added input
 
-    console.log(htmlTagList[e.target.value].mandatoryAttributes);
+    let tag=''
+    if(InParentOrChild==="InParent" || InParentOrChild==="InChild"){
+        tag=e.target.value
+    }else if(InParentOrChild==="InEdit"){
+        tag=e
+    }
+console.log('tag',tag)//from edit button unable to send created element tag
+    console.log(htmlTagList[tag].mandatoryAttributes);
 
     let attributesHolder = document.createElement("div");
     attributesHolder.classList.add("attributesHolder");
@@ -20,17 +27,17 @@ import htmlTagList from "./assets/htmlTagList.json";
     tagsAttributes.appendChild(attributesHolder);
 
     //only if it there are mandatory attributes
-    if (htmlTagList[e.target.value].mandatoryAttributes.length >= 1) {
+    if (htmlTagList[tag].mandatoryAttributes.length >= 1) {
       //for mandatory attributes
       console.log("xxxxxxxxx");
-      htmlTagList[e.target.value].mandatoryAttributes?.map((x) => {
+      htmlTagList[tag].mandatoryAttributes?.map((x) => {
         addAttributesInUI(x, attributesHolder, true);
         return ''
       });
     }
 
     //only if it there are additional attributes
-    if (htmlTagList[e.target.value].attributes.length >= 1) {
+    if (htmlTagList[tag].attributes.length >= 1) {
       let additonalAttributesHolder = document.createElement("div");
       additonalAttributesHolder.classList.add("additonalAttributesHolder");
       let select = document.createElement("select");
@@ -38,8 +45,8 @@ import htmlTagList from "./assets/htmlTagList.json";
       label.innerText = "Click to add attributes";
 
       //for additional attributes creating a select from which one by one attributes can be added
-      htmlTagList[e.target.value].attributes?.map((x) => {
-        if (!htmlTagList[e.target.value].mandatoryAttributes.includes(x)) {
+      htmlTagList[tag].attributes?.map((x) => {
+        if (!htmlTagList[tag].mandatoryAttributes.includes(x)) {
           let option = document.createElement("option");
           option.value = x;
           option.innerText = x;

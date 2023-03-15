@@ -129,7 +129,7 @@ function Input() {
       let addCssBtn = document.createElement("img");
       addCssBtn.src = addCssIcon;
       addCssBtn.classList.add("cssIcon");
-      addCssBtn.addEventListener("click", function (x) {
+      addCssBtn.addEventListener("click", function (e) {
         console.log("addevent rann---------------");
         document.getElementById("inputHtml").classList.remove("enter");
         document.getElementById("inputCss").classList.add("enter");
@@ -144,7 +144,7 @@ function Input() {
       //add child
       let addChild = document.createElement("img");
       addChild.src = linkIcon;
-      addChild.addEventListener("click", function (x) {
+      addChild.addEventListener("click", function (e) {
         let addChildPopup = document.getElementById("addChildPopup");
         addChildPopup.style.display = "flex";
 
@@ -157,7 +157,7 @@ function Input() {
       //delete element and struct
       let deleteElemBtn = document.createElement("img");
       deleteElemBtn.src = minusIcon;
-      deleteElemBtn.addEventListener("click", function (x) {
+      deleteElemBtn.addEventListener("click", function (e) {
         console.log("delte elem funv----");
         createdElem.parentNode.removeChild(createdElem); //deleting the real element
         struct.parentNode.removeChild(struct); //dleteing the struct from structure
@@ -166,7 +166,7 @@ function Input() {
       //edit element's content
       let editElemBtn = document.createElement("img");
       editElemBtn.src = editIcon;
-      editElemBtn.addEventListener("click", function (x) {
+      editElemBtn.addEventListener("click", function (e) {
         console.log("edit elem func----");
 
         let editElemContentPopup = document.getElementById(
@@ -177,6 +177,9 @@ function Input() {
         document.getElementById("elemsEditedContent").value =
           createdElem.innerText;
 
+          let tagsAttributesInEdit=document.getElementById('tagsAttributesInEdit')
+          //NOTE:::WORKING HERE ;;;element.value is not working
+          handleTagChange(element.value,tagsAttributesInEdit,"InEdit")//the "InParent string tells to ditinguish child and parent uI"
         setsendElement(createdElem); //sending the parent elem
         setStructPebble(structElemHolder); //sending the struct
       });
