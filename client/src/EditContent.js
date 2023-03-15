@@ -32,6 +32,7 @@ function EditContent(props) {
                 }
             });
             console.log(tempArr)
+            // eslint-disable-next-line array-callback-return
             tempArr.map(x=>{
                 x.remove()//removing the child struct
             })

@@ -4,7 +4,7 @@ import addChildIcon from "./assets/icons8-hierarchy-ios-16-filled/icons8-hierarc
 import addCssIcon from "./assets/icons8-css3-windows-11-color/icons8-css3-96.png"
 import editIcon from "./assets/icons8-modify-others/icons8-modify-96.png"
 
-
+//responsible for creating child sturcture,,,recursively calls itself when child od child is created
 function CommonFunc(childElemVal,createdChildElem,setsendElement,setsendstruct,inputHtml,setTooltiptext,setStructPebble){
 
 console.log(childElemVal);

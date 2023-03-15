@@ -25,7 +25,8 @@ and with each elem there will be an option to update modify that element such as
 
 # to d0-
 - add tile tag for class name in elements and for suggested proeprty values etc
-
+- its letting add classname which starts with number an dthen have letters (eg. 325432jdfjdfsj)
+- in edit add all the attributes feature 
 
 - have to check responsiveness
 - add hover effects ,,like on elemeng structure ..on hover make them move slightly to right,,or on the buttons add border or zzoom in effect something

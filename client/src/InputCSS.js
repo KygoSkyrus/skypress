@@ -1,13 +1,15 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import css from "./assets/css-properties.json";
 
 //icons
 import minusIcon from "./assets/icons8-minus-windows-11-color/icons8-minus-96.png";
-import htmlIcon from "./assets/icons8-html-5-windows-11-color/icons8-html-5-96.png";
 import backIcon from "./assets/icons8-back-arrow-64.png";
 import doneIcon from "./assets/icons8-ok-color/icons8-ok-96.png";
-import updateIcon from "./assets/icons8-update-windows-11-outline/icons8-update-96.png"
 import editIcon from "./assets/icons8-modify-others/icons8-modify-96.png"
+// import htmlIcon from "./assets/icons8-html-5-windows-11-color/icons8-html-5-96.png";
+// import updateIcon from "./assets/icons8-update-windows-11-outline/icons8-update-96.png"
 
 let allAppliedClasses = []; //this array holds all the classes added in every element,this is required at the time of deleeting calss,,to make sure that class should be removed from style only if that class is not used anywhere in any element
 

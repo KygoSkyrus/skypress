@@ -1,4 +1,9 @@
 import React from "react";
+import htmlTagList from "./assets/htmlTagList.json";
+
+
+//importing functions
+import handleTagChange from "./HandleTagChange"
 import CommonFunc from "./CommonFunc";
 
 function AddChild(props) {
@@ -16,18 +21,56 @@ function AddChild(props) {
 
   function addChildWithParent(e) {
     console.log("sperate addChildWithParent function ran----");
+
     let childElement = document.getElementById("childElement");
-    let createdChildElem = document.createElement(childElement.value);
     let childElemContent = document.getElementById("childElemContent");
+
+     //creating child element and putting content
+    let createdChildElem = document.createElement(childElement.value);
     createdChildElem.innerText = childElemContent.value;
-    element.appendChild(createdChildElem);
-    //NOTe:in this comp there maybe lines that are not usefull maybe twice as the common function is used now
+
+
+
+    
+    let mandatoryAttributeIsEmpty = false;
+    let emptyMandatoryAttribute = "";
+    //adding attributes to element
+    let attributesHolder = document.getElementById("attributesHolderInChild");//created this ID dynamicaaly in handleTagChange function
+    console.log('attributesHolder',attributesHolder)
+    if (attributesHolder) {
+      console.log('11')
+      attributesHolder.childNodes.forEach((x) => {
+        //before doing any of this first have to check if the mandotry attribute's value is not blank
+        if (
+          htmlTagList[childElement.value].mandatoryAttributes.includes(
+            x.dataset.attributename
+          )
+        ) {
+          if (x.lastElementChild.value === "") {
+            console.log("yes matched", x.dataset.attributename);
+            console.log(mandatoryAttributeIsEmpty);
+            mandatoryAttributeIsEmpty = true;
+            emptyMandatoryAttribute = x;
+          } else {
+            console.log("not empty");
+          }
+        }
+
+        createdChildElem.setAttribute(
+          x.dataset.attributename,
+          x.lastElementChild.value
+        );
+        console.log(x, x.lastElementChild, x.dataset.attributename);
+      });
+    }
+    console.log('mandatoryAttributeIsEmpty',mandatoryAttributeIsEmpty)
+    if (!mandatoryAttributeIsEmpty) {
 
     //for addimg this childelement in structure
     let structChildElem = document.createElement(childElement.value);
     structChildElem.innerText = childElement.value;
     //struct.appendChild(structChildElem);
-
+    
     let c = CommonFunc(
       childElement.value,
       createdChildElem,
@@ -36,18 +79,27 @@ function AddChild(props) {
       inputHtml,
       setTooltiptext,
       setStructPebble
-    ); //whatever we get from here will be appended to the parent(it returns the struct child)
+      ); //whatever we get from here will be appended to the parent(it returns the struct child)
+      
 
-    struct.appendChild(c); //the struct here is the parent struct element to which the child struct (c from commonFUnc) is appended
-
-    document.getElementById("addChildPopup").style.display = "none";
-
-    //clearing inputs
-    childElement.value='div';//set to first option 
+     //adding creeated child element to its parent
+     element.appendChild(createdChildElem);
+     //adding child struct to parent struct
+      struct.appendChild(c); //the struct here is the parent struct element to which the child struct (c from commonFUnc) is appended
+      
+      document.getElementById("addChildPopup").style.display = "none";
+      
+    //clearing and setting things to default after adding elememy
+    childElement.value='h1';//set to first option 
     childElemContent.value='';
+    document.getElementById("tagsAttributesInChild").innerHTML = "";
+  } else {
+    //alert(`${emptyMandatoryAttribute.dataset.attributename} attribute can't be empty`);
+    emptyMandatoryAttribute.classList.add("empty");
+    //either mark red the attribute or show an alert
   }
 
-
+  }
   function closeAddChildPopup(e) {
     document.getElementById("addChildPopup").style.display = "none";
      //clearing inputs
@@ -66,6 +118,11 @@ function AddChild(props) {
   //     }
   //   });
 
+  function handleTagChangeInChild(e){
+    let tagsAttributesInChild = document.getElementById('tagsAttributesInChild')
+    handleTagChange(e,tagsAttributesInChild,"InChild")
+  }
+
   return (
     <>
       <div id="addChildPopup">
@@ -79,7 +136,7 @@ function AddChild(props) {
           <div className="container" id="childInputHolderContainer">
             <div className="groupInput">
               <label>Select element </label>
-              <select id="childElement" >
+              <select id="childElement"  onChange={(e) => handleTagChangeInChild(e)}>
                 {/* <option value="div">div</option>
                 <option value="section">section</option>
                 <option value="span">span</option>
