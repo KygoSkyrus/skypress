@@ -1,4 +1,5 @@
 import React from "react";
+import htmlTagList from "./assets/htmlTagList.json";
 
 function EditContent(props) {
     const { element, structPebble } = props;
@@ -9,9 +10,6 @@ function EditContent(props) {
         let elemsEditedContent = document.getElementById("elemsEditedContent");
         let editElemContentPopup = document.getElementById("editElemContentPopup");
 
-        // console.log('elem',element)
-        // console.log(element.childNodes)
-        // console.log(element.children)
         if (element.childNodes.length >= 1) {
             console.log("has childs");
 
@@ -54,10 +52,51 @@ function EditContent(props) {
 
 
         function setVal(elemsEditedContent, editElemContentPopup) {
+
+
+            let mandatoryAttributeIsEmpty = false;
+            let emptyMandatoryAttribute = "";
+            //adding attributes to element
+            let attributesHolder = document.getElementById("attributesHolderInEdit");//created this ID dynamicaaly in handleTagChange function
+            console.log('attributesHolder',attributesHolder)
+            if (attributesHolder) {
+              console.log('11')
+              attributesHolder.childNodes.forEach((x) => {
+                //before doing any of this first ghave to check if the mandotry attribute's value is not blank
+                if (
+                  htmlTagList[element.tagName.toLowerCase()].mandatoryAttributes.includes(
+                    x.dataset.attributename
+                  )
+                ) {
+                  if (x.lastElementChild.value === "") {
+                    console.log("yes matched", x.dataset.attributename);
+                    console.log(mandatoryAttributeIsEmpty);
+                    mandatoryAttributeIsEmpty = true;
+                    emptyMandatoryAttribute = x;
+                  } else {
+                    console.log("not empty");
+                  }
+                }
+        
+                element.setAttribute(
+                  x.dataset.attributename,
+                  x.lastElementChild.value
+                );
+                console.log(x, x.lastElementChild, x.dataset.attributename);
+              });
+            }
+            console.log('mandatoryAttributeIsEmpty',mandatoryAttributeIsEmpty)
+            if (!mandatoryAttributeIsEmpty) {
+
             element.innerText = elemsEditedContent.value;
 
             editElemContentPopup.style.display = "none"; //hiding back the popup
             elemsEditedContent.value = ""; //clearing input
+        }else {
+            //alert(`${emptyMandatoryAttribute.dataset.attributename} attribute can't be empty`);
+            emptyMandatoryAttribute.classList.add("empty");
+            //either mark red the attribute or show an alert
+          }
         }
     }
 
@@ -82,8 +121,8 @@ function EditContent(props) {
                         <div className="groupInput">
                             <label>Edit content</label>
                             <textarea id="elemsEditedContent"></textarea>
-                        </div>
                         <div id="tagsAttributesInEdit"></div>
+                        </div>
                         <button
                             id="updateElemsContent"
                             onClick={(e) => updateElemsContent(e)}

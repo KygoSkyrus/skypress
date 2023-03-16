@@ -13,10 +13,12 @@ import htmlTagList from "./assets/htmlTagList.json";
     tagsAttributes.innerHTML = ""; //clearing the previously added input
 
     let tag=''
+    let theElem;
     if(InParentOrChild==="InParent" || InParentOrChild==="InChild"){
         tag=e.target.value
     }else if(InParentOrChild==="InEdit"){
-        tag=e
+        tag=e.tagName.toLowerCase()
+        theElem=e
     }
 console.log('tag',tag)//from edit button unable to send created element tag
     console.log(htmlTagList[tag].mandatoryAttributes);
@@ -31,7 +33,7 @@ console.log('tag',tag)//from edit button unable to send created element tag
       //for mandatory attributes
       console.log("xxxxxxxxx");
       htmlTagList[tag].mandatoryAttributes?.map((x) => {
-        addAttributesInUI(x, attributesHolder, true);
+        addAttributesInUI(x, attributesHolder, true,InParentOrChild,theElem);
         return ''
       });
     }
@@ -61,7 +63,7 @@ console.log('tag',tag)//from edit button unable to send created element tag
 
       addAttributeBtn.addEventListener("click", function () {
         console.log("addAttributeBtn clicked");
-        addAttributesInUI(select.value, attributesHolder, false);
+        addAttributesInUI(select.value, attributesHolder, false,InParentOrChild,theElem);
       });
 
       let tempDiv = document.createElement("div");
@@ -77,7 +79,7 @@ console.log('tag',tag)//from edit button unable to send created element tag
   function addAttributesInUI(
     attribute,
     attributesHolder,
-    isMandatory
+    isMandatory,InParentOrChild,theElem
   ) {
     console.log("addAdditonalAttributesInUI func----------");
     let doesAlreadyExist = false;
@@ -102,6 +104,12 @@ console.log('tag',tag)//from edit button unable to send created element tag
       let attributeValInput = document.createElement("input");
       attributeValInput.type = "text";
       attributeValInput.id = attribute;
+
+      //setting the already exist attributes value (this is when edit element is clicked)
+      if(InParentOrChild==="InEdit"){
+      console.log('dhhdhdhdhd',theElem.getAttribute(attribute))
+      attributeValInput.value=theElem.getAttribute(attribute)
+      }
 
       let tempDiv = document.createElement("div");
       tempDiv.dataset.attributename = attribute;

@@ -21,6 +21,7 @@ and with each elem there will be an option to update modify that element such as
 - have to fix it when tooltip still shows when ther is no class added
 - DEFCT---seems to be fixed::::property is be9iong added in the html elem where all is stored
 - an option where user can opt in that he wants to add proeprty value by himself and not want any suggestions...this should be for every ptropery and also there should be a blank prop value field so that user can do it himself
+- find a nice place to show structure,, maybe like a icon nect to export on wclick of whihc a popup with alsmost screen size will have ,,same for the applied csss 
    
 
 # to d0-
@@ -36,6 +37,11 @@ and with each elem there will be an option to update modify that element such as
 - even though teh property value is in user input,,,still show of the common alternate values like inheirt,none,auto
 - the ham should transit to an arrow  on its way when it reaches the right side 
 - also later let user add all the global attrubutes to the element (except leaving some)
+
+
+
+## defects
+- it's marking both of mandatory attribute red even though one of them is filled
 
 
 # done stuff

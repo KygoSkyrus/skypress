@@ -178,8 +178,8 @@ function Input() {
           createdElem.innerText;
 
           let tagsAttributesInEdit=document.getElementById('tagsAttributesInEdit')
-          //NOTE:::WORKING HERE ;;;element.value is not working
-          handleTagChange(element.value,tagsAttributesInEdit,"InEdit")//the "InParent string tells to ditinguish child and parent uI"
+          //here createdEleme is sent so that we can get the already applied attributes value to show as default when on edit popup
+          handleTagChange(createdElem,tagsAttributesInEdit,"InEdit")//the "InParent string tells to ditinguish child and parent uI"
         setsendElement(createdElem); //sending the parent elem
         setStructPebble(structElemHolder); //sending the struct
       });

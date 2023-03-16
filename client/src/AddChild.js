@@ -34,7 +34,7 @@ function AddChild(props) {
     
     let mandatoryAttributeIsEmpty = false;
     let emptyMandatoryAttribute = "";
-    //adding attributes to element
+    //adding attributes to elementhandleTagChange
     let attributesHolder = document.getElementById("attributesHolderInChild");//created this ID dynamicaaly in handleTagChange function
     console.log('attributesHolder',attributesHolder)
     if (attributesHolder) {

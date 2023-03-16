@@ -1,6 +1,7 @@
 import minusIcon from "./assets/icons8-minus-windows-11-color/icons8-minus-96.png";
 // import addIcon from "./assets/icons8-add-color/icons8-add-96.png"
-import addChildIcon from "./assets/icons8-hierarchy-ios-16-filled/icons8-hierarchy-50.png"
+// import addChildIcon from "./assets/icons8-hierarchy-ios-16-filled/icons8-hierarchy-50.png"
+import linkIcon from "./assets/linkIcon.jpeg";
 import addCssIcon from "./assets/icons8-css3-windows-11-color/icons8-css3-96.png"
 import editIcon from "./assets/icons8-modify-others/icons8-modify-96.png"
 
@@ -62,7 +63,7 @@ console.log(childElemVal);
 
     // //add child
     let addChild = document.createElement("img");
-    addChild.src=addChildIcon;
+    addChild.src=linkIcon;
     addChild.addEventListener("click", function (x) {
 
       let addChildPopup = document.getElementById("addChildPopup");
