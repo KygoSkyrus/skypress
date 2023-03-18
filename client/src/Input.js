@@ -82,6 +82,10 @@ function Input() {
             mandatoryAttributeIsEmpty = true;
             emptyMandatoryAttribute = x;
           } else {
+            //to remove the empty class from the input if the user has entered value
+            if(x.classList.contains('empty')){
+              x.classList.remove('empty')
+            }
             console.log("not empty");
           }
         }
@@ -93,16 +97,16 @@ function Input() {
         console.log(x, x.lastElementChild, x.dataset.attributename);
       });
     }
-    console.log('mandatoryAttributeIsEmpty',mandatoryAttributeIsEmpty)
+    console.log('mandatoryAttributeIsEmpty,emptyMandatoryAttribute',mandatoryAttributeIsEmpty,emptyMandatoryAttribute)
     if (!mandatoryAttributeIsEmpty) {
       /***********************structure starts ***************************************/
       let struct = document.createElement("div");
       struct.classList.add("structElemHolder"); //its not wise to add classnames here,,,when the child will added they will have the same class hence fucking the whole hierarchy
 
       let structTitle = document.createElement("span");
-      structTitle.classList.add("tooltip");
       structTitle.innerText = element.value;
       structTitle.style.cursor = "pointer";
+      structTitle.style.width="100%"
 
       let structElemHolder = document.createElement("div");
       structElemHolder.style.background = "#171717";
@@ -114,10 +118,6 @@ function Input() {
       structElemHolder.style.borderRadius = "4px";
       structElemHolder.style.border = "1px solid white";
 
-      let tooltiptext = document.createElement("span");
-      tooltiptext.classList.add("tooltiptext");
-
-      structTitle.appendChild(tooltiptext);
       structElemHolder.appendChild(structTitle);
       struct.appendChild(structElemHolder);
 
@@ -135,7 +135,7 @@ function Input() {
         document.getElementById("inputCss").classList.add("enter");
 
         setsendElement(createdElem);
-        setTooltiptext(tooltiptext);
+        setTooltiptext(structTitle);//removing tooltip,instad of that added title tag
         setStructPebble(structElemHolder); //sending parent elem in structure
         // navigate('/addcss')
         // setinputHtml(inputHtmlComp);//removed from here as the inputhtmlcomp was only being inisitialized wihen the first addcss button was created.

@@ -15,36 +15,33 @@ and with each elem there will be an option to update modify that element such as
 
 
 ### would be better to have these features too
-- along with applied css delete feature..there can be an edit css option whihc will only update the property value ,,,on click convert it to an input which will get the value from json i guess and put it default,,,and user and can input,,and maybe add an OK button or on enter save it back to json,,,,think on it bcz it will be too much and make things complex
+- [done]along with applied css delete feature..there can be an edit css option whihc will only update the property value ,,,on click convert it to an input which will get the value from json i guess and put it default,,,and user and can input,,and maybe add an OK button or on enter save it back to json,,,,think on it bcz it will be too much and make things complex
 - on hover of sturcture element the real element should be distinguished
 - there sould be a quick view option for all of the applied css and class, so that user can get an idea what css is applied to wht clases
-- have to fix it when tooltip still shows when ther is no class added
-- DEFCT---seems to be fixed::::property is be9iong added in the html elem where all is stored
 - an option where user can opt in that he wants to add proeprty value by himself and not want any suggestions...this should be for every ptropery and also there should be a blank prop value field so that user can do it himself
 - find a nice place to show structure,, maybe like a icon nect to export on wclick of whihc a popup with alsmost screen size will have ,,same for the applied csss 
    
 
 # to d0-
-- add tile tag for class name in elements and for suggested proeprty values etc
-- its letting add classname which starts with number an dthen have letters (eg. 325432jdfjdfsj)
-- in edit add all the attributes feature 
-
-- have to check responsiveness
 - add hover effects ,,like on elemeng structure ..on hover make them move slightly to right,,or on the buttons add border or zzoom in effect something
 - very importnat thing,,,do not apply css to direct tags..it will effct the user's tag also,,only use classes with fucked up anme to make that style unique
 - do thing on enter press
-- the part where units of property suggests
-- even though teh property value is in user input,,,still show of the common alternate values like inheirt,none,auto
-- the ham should transit to an arrow  on its way when it reaches the right side 
 - also later let user add all the global attrubutes to the element (except leaving some)
+- have to check responsiveness[kindOfDoneButYouNeverKnow]
 
 
 
 ## defects
-- it's marking both of mandatory attribute red even though one of them is filled
+-[done] it's marking both of mandatory attribute red even though one of them is filled
+- [done]DEFCT---seems to be fixed::::property is be9iong added in the html elem where all is stored
 
 
 # done stuff
+- [notNedded][goingwithout it]even though the property value is in user input,,,still show of the common alternate values like inheirt,none,auto
+- [notNedded][goingwithout it]the part where units of property suggests
+- its letting add classname which starts with number an dthen have letters (eg. 325432jdfjdfsj)
+- in edit add all the attributes feature 
+- ::[DONE;;foe elementbis done,,i dont think ptoperty values are neede dto be suggested,,even the auto inherit and ither things]add tile tag for class name in elements and for suggested proeprty values etc
 - DONE::put all the validation to add classname..what if user eneters a classname staring with dot
 - add data for html tags
 - fix the hamburger 
