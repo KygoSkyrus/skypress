@@ -35,7 +35,7 @@ body {
   width: 50vw;
   height: 100vh;
   background-color: rgb(236, 236, 236);
-  border-left: 1px dashed black;
+  /* border-left: 1px dashed black; */
   padding: 30px 8px 8px 8px;
   box-sizing: border-box;
   display: flex;
@@ -48,6 +48,7 @@ body {
   transition: all 0.75s;
   -webkit-transition: all 0.75s;
   right: -50vw;
+  box-shadow: -6px -6px 15px #afafaf;
 }
 
 .groupInput {

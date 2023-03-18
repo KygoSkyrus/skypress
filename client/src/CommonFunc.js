@@ -12,15 +12,13 @@ console.log(childElemVal);
 
     /***********************structure ends ***************************************/
     let struct = document.createElement("div");//struct here is just regural varible, doesnt haave to do with the struct we are using
-    ///struct.classList.add('structElemHolder');\
     struct.style.position="relative";
     struct.style.left="12px";
-    // struct.style.background="green";
 
     let structTitle = document.createElement("span");
-    structTitle.classList.add('tooltip');
     structTitle.innerText = childElemVal;
     structTitle.style.cursor = "pointer";
+    structTitle.style.width="100%"
 
     let structElemHolder = document.createElement("div");//to this var try adding the addcss/child buttons
     structElemHolder.style.display="flex";
@@ -31,11 +29,7 @@ console.log(childElemVal);
     structElemHolder.style.padding="4px 10px";
     structElemHolder.style.borderRadius="4px";
     structElemHolder.style.border="1px solid white";
-    
-    let tooltiptext=document.createElement("span");
-    tooltiptext.classList.add('tooltiptext')
-
-    structTitle.appendChild(tooltiptext); 
+     
     structElemHolder.appendChild(structTitle);
     struct.appendChild(structElemHolder);
     
@@ -48,14 +42,11 @@ console.log(childElemVal);
     let addCssBtn = document.createElement("img");
     addCssBtn.src = addCssIcon;
     addCssBtn.addEventListener("click", function () {
-      // document.getElementById("inputCss").style.display="block";
-      // document.getElementById("inputHtml").style.display="none";
       document.getElementById("inputHtml").classList.remove('enter')
       document.getElementById("inputCss").classList.add('enter')
       setsendElement(createdChildElem);
-      setTooltiptext(tooltiptext);
+      setTooltiptext(structTitle);
       setStructPebble(structElemHolder)
-      // setinputHtml(inputHtml);
     });
 
 

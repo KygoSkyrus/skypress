@@ -46,9 +46,10 @@ function InputCSS(props) {
     if (document.getElementById("classList") && element) {
       let classList = document.getElementById("classList");
       if (tooltiptext) {
-        tooltiptext.innerText = "";
+        //tooltiptext.innerText = "";
         let realArr = Array.from(element.classList);
-        tooltiptext.innerText = realArr?.join(",");
+        //tooltiptext.innerText = realArr?.join(",");
+        tooltiptext.setAttribute('title',realArr?.join(","))
       }
       classList.childNodes.forEach((each) => {
         //curently data atttribute is used to match the class but later it maybe  have to be chnaged
@@ -511,9 +512,10 @@ function InputCSS(props) {
     //let regEx = /\.-?[_a-zA-Z]+[_a-zA-z0-9-]*\s*\{/
     let regEx = /-?[_a-zA-Z]+[_a-zA-z0-9-]*/;
 
-    //claasname cannot start with two hyphens..but this is working, don't know why there is this rule
-
+    //claasname cannot start with two hyphens..but this is working, don't know why there is this rule::ignore
+    let countArr=['0','1','2','3','4','5','6','7','8','9']
     if (className.value) {
+      if(countArr.includes(className.value[0])===false){
       if (regEx.test(className.value)) {
         let hasDotAtZero = className.value[0] === ".";
         let hasCurlyAtEnd = className.value[className.value.length - 1] === "{";
@@ -602,7 +604,9 @@ function InputCSS(props) {
       } else {
         alert("invalid classname");
       }
-
+    }else {
+        alert("class names cannot start with a number");
+      }
       //clearing input
       className.value = "";
     } else {
